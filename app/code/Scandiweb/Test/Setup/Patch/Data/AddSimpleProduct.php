@@ -84,7 +84,7 @@ class AddSimpleProduct implements DataPatchInterface
      * @param SourceItemsSaveInterface $sourceItemsSaveInterface
      * @param State $appState
      * @param StoreManagerInterface $storeManager
-	 * @param EavSetup $eavSetup
+     * @param EavSetup $eavSetup
      * @param CategoryLinkManagementInterface $categoryLink
      */
     public function __construct(
@@ -94,19 +94,19 @@ class AddSimpleProduct implements DataPatchInterface
         State $appState,
         StoreManagerInterface $storeManager,
         EavSetup $eavSetup,
-		SourceItemInterfaceFactory $sourceItemFactory,
+        SourceItemInterfaceFactory $sourceItemFactory,
         SourceItemsSaveInterface $sourceItemsSaveInterface,
-		CategoryLinkManagementInterface $categoryLink
+        CategoryLinkManagementInterface $categoryLink
     ) {
         $this->appState = $appState;
         $this->categoryInterfaceFactory = $categoryInterfaceFactory;
         $this->productInterfaceFactory = $productInterfaceFactory;
         $this->productRepository = $productRepository;
-		$this->eavSetup = $eavSetup;
+        $this->eavSetup = $eavSetup;
         $this->storeManager = $storeManager;
         $this->sourceItemFactory = $sourceItemFactory;
         $this->sourceItemsSaveInterface = $sourceItemsSaveInterface;
-		$this->categoryLink = $categoryLink;
+        $this->categoryLink = $categoryLink;
     }
 
     /**
@@ -141,11 +141,11 @@ class AddSimpleProduct implements DataPatchInterface
 
         $attributeSetId = $this->eavSetup->getAttributeSetId(Product::ENTITY, 'Default');
         $websiteIDs = [$this->storeManager->getStore()->getWebsiteId()];
-		$product->setTypeId(Type::TYPE_SIMPLE)
+        $product->setTypeId(Type::TYPE_SIMPLE)
             ->setWebsiteIds($websiteIDs)
             ->setAttributeSetId($attributeSetId)
             ->setName('Test Product')
-			->setUrlKey('testproduct')
+            ->setUrlKey('testproduct')
             ->setSku('test-product')
             ->setPrice(9.99)
             ->setVisibility(Visibility::VISIBILITY_BOTH)
@@ -167,8 +167,8 @@ class AddSimpleProduct implements DataPatchInterface
         $this->sourceItems[] = $sourceItem;
 
         $this->sourceItemsSaveInterface->execute($this->sourceItems);
-
-		$this->categoryLink->assignProductToCategories($product->getSku(), [$categoryId]);
+        
+        $this->categoryLink->assignProductToCategories($product->getSku(), [$categoryId]);
     }
 
     /**
